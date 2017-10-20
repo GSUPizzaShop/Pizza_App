@@ -1,4 +1,4 @@
-package application;
+package decorator;
 
 public interface Pizza {
 	public String getToppings();

@@ -1,4 +1,4 @@
-package application;
+package decorator;
 
 public class BasicPizza implements Pizza {
 

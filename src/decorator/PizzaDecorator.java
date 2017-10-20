@@ -1,4 +1,4 @@
-package application;
+package decorator;
 
 public class PizzaDecorator implements Pizza {
 	protected Pizza tempPizza;
