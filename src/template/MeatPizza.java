@@ -1,36 +1,26 @@
 package template;
 
-public class MeatPizza {
+public class MeatPizza extends PizzaBuild {
 	double price;
 	
 	void buildPizza() {
 		System.out.println("Building meat pizza");
 	}
 
-	void pizzaSize(String size) {
-		if(size.equalsIgnoreCase("small")) {
-			price = 5.00;
-			calPrice(price);
-		} else if(size.equalsIgnoreCase("medium")) {
-			price = 6.00;
-			calPrice(price);
-		} else if(size.equalsIgnoreCase("large")) {
-			price = 8.05;
-			calPrice(price);
-		}
+	@Override
+	public String getToppings() {
+		return "Crust, Cheese, Sauce, Pepperoni, Italian Sauasage, Pork, Ham";
 	}
 
-	void addToppings() {
-		System.out.println("Adding marinara sauce");
-		System.out.println("Adding cheese");
-		System.out.println("Adding pep");
+	@Override
+	public double getCost() {
+		return 0.00;
 	}
 
-	double calPrice(double price) {
-		this.price = price;
-		double tax = .07;
-		price = price * tax;
-		return price;
+	@Override
+	public String getSize() {
+		return "medium";
 	}
+
 
 }
