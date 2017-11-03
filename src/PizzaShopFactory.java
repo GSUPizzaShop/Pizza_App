@@ -4,7 +4,7 @@ public class PizzaShopFactory implements PizzaShop{
 	
 	static PizzaShopFactory pizza;
 	ArrayList<StateObserver> observers = new ArrayList<StateObserver>();
-	private double price;
+	private double price = 0;
 	private double delivFee;
 	private double tax;
 	private double totalprice;
@@ -12,6 +12,7 @@ public class PizzaShopFactory implements PizzaShop{
 	
 	PrintOrder orderPrint = new PrintOrder();
 	PrintOrderCommand printCommand = new PrintOrderCommand(orderPrint);
+	private String orderReciept = "Your order";
 	@Override
 	public String getToppings() {
 		// TODO Auto-generated method stub
@@ -34,9 +35,13 @@ public class PizzaShopFactory implements PizzaShop{
 	}
 
 	@Override
-	public void cancelOrder() {
+	public void cancelOrder(){
 		// TODO Auto-generated method stub
-		
+		if(state==1 || state==2 || state==9) {
+			try {
+				
+			}
+		}
 	}
 	
 	public int getState() {
@@ -65,8 +70,26 @@ public class PizzaShopFactory implements PizzaShop{
 	public void printOrder(boolean p) {
 		// TODO Auto-generated method stub
 		if(p) {
-			
+			printCommand.execute(orderReciept);
 		}
+		orderReciept = "Your order";
+		state = 9;
+		notifyStateObservers();
+	}
+
+	private void notifyStateObservers() {
+		// TODO Auto-generated method stub
+		for(int i=0; i<observers.size();i++) {
+			StateObserver observer = (StateObserver)observers.get(i);
+			observer.update();
+		}
+	}
+	
+	public synchronized static PizzaShopFactory getInstance() {
+		if(pizza == null) {
+			pizza = new PizzaShopFactory();
+		}
+		return pizza;
 	}
 
 }

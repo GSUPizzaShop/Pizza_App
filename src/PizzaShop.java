@@ -15,6 +15,7 @@ public interface PizzaShop {
 			//Method for adding and removing observers
 			void registerObserver(StateObserver o);
 			void removeObserver(StateObserver o);
+			int getState();
 }
 
 interface StateObserver {

@@ -13,4 +13,9 @@ public class PizzaShopView implements StateObserver{
 		
 	}
 
+	public void createView() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

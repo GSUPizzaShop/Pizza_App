@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 import javafx.application.*;
 
 public class GSUPizzaShop extends Application implements EventHandler<ActionEvent>{
-	
+	PizzaShop model = new PizzaShop.getInstance();
+	PizzaShopControllerInterface controller = new PizzaShopController(model);
 	Button ok;
 	RadioButton small, medium, large;
 	CheckBox pep, ham, sausage, pork;
@@ -31,37 +32,12 @@ public class GSUPizzaShop extends Application implements EventHandler<ActionEven
 	@Override
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
-		stage.setTitle("GSU Pizza Shop");
-		
-		ok = new Button();
-		ok.setText("OK");
-		ok.setOnAction(this);
-		
-		small = new RadioButton("Small");
-		medium = new RadioButton("Medium");
-		large = new RadioButton("Large");
-	
-		
-		pep = new CheckBox("Pepperoni");
-		ham = new CheckBox("Ham");
-		sausage = new CheckBox("Sausage");
-		pork = new CheckBox("Pork");
-		
-		StackPane layout = new StackPane();
-		BorderPane border = new BorderPane();
-		layout.getChildren().add(ok);
-		
-		/*Rectangle topBar = new Rectangle(550,75);
-		Rectangle bottomBar = new Rectangle(550,75);
-		topBar.setStyle("-fx-background-color: lightblue");
-		border.setTop(topBar);
-		//border.setBottom(bottomBar);
-		//border.setStyle("-fx-background-color: blue");
-		layout.getChildren().add(border);*/
-		
-		Scene scene = new Scene(layout,400,550);
-		stage.setScene(scene);
+		PizzaShopView shopview = controller.getView();
+		shopview.createView();
+		stage.setScene(shopview.scene);
 		stage.setResizable(false);
+		stage.sizeToScene();
+		stage.setTitle("GSU Pizza Shop");
 		stage.show();
 	}
 
